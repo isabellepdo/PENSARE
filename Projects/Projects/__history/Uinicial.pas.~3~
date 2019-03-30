@@ -1,0 +1,83 @@
+unit Uinicial;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Buttons, IniFiles;
+
+type
+  TFinicial = class(TForm)
+    BitBtn1: TBitBtn;
+    BitBtn2: TBitBtn;
+    BitBtn3: TBitBtn;
+    BitBtn4: TBitBtn;
+    procedure FormActivate(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  Finicial: TFinicial;
+
+   hostINI : string;
+   DataBaseINI :string;
+implementation
+
+{$R *.dfm}
+
+uses Uorganizacao;
+
+procedure TFinicial.FormActivate(Sender: TObject);
+var
+arqini : TIniFIle;
+hostname : string;
+database : string;
+imgpath : string;
+teste    : string;
+linha : string;
+multidb : string;
+foto : TMemoryStream;
+begin
+   try
+      if not FileExists(ExtractFilePath(Application.ExeName)+'Habitat.ini') then
+        begin
+          showmessage('Você precisa de um arquivo .ini associado a seu programa Habitat');
+        end
+      else
+        begin
+           ArqINI :=TIniFile.Create(ExtractFilePath(Application.ExeName)+'Habitat.ini');
+           hostINI := ArqINI.ReadString('geral','hostname',hostINI);
+           DataBaseINI := ArqINI.ReadString('geral','database',DataBaseINI);
+        end;
+   except on E: Exception do
+      showmessage('ERRO AO LER O INI: ' + E.Message);
+   end;
+
+   try
+      Forganizacao.dbgeral.disconnect;
+      Forganizacao.DBGERAL.HostName := hostINI;
+      Forganizacao.DBGERAL.Database := DataBaseINI;
+
+      try
+        if Forganizacao.DBGERAL.Connected then
+          Forganizacao.dbgeral.disconnect;
+
+          Forganizacao.DBGERAL.Connected;
+      except
+
+        On E:exception do
+        begin
+          Showmessage('ERRO AO CONECTAR O BANCO DE DADOS: '+ E.Message);
+        end;
+      end;
+   except on E: Exception do
+      Showmessage('ERRO AO CAPTAR DADOS PARA O BANCO DE DADOS: '+ E.Message);
+   end;
+
+
+end;
+
+end.

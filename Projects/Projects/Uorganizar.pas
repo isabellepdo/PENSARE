@@ -1,0 +1,67 @@
+unit Uorganizar;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Data.DB, Vcl.Grids,
+  Vcl.DBGrids, Vcl.Buttons;
+
+type
+  TForganizar = class(TForm)
+    GroupBox1: TGroupBox;
+    cbbx: TComboBox;
+    BitBtn1: TBitBtn;
+    DBGrid1: TDBGrid;
+    BitBtn2: TBitBtn;
+    Label1: TLabel;
+    procedure FormActivate(Sender: TObject);
+    procedure BitBtn1Click(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  Forganizar: TForganizar;
+
+implementation
+
+{$R *.dfm}
+
+uses Uorganizacao;
+
+procedure TForganizar.BitBtn1Click(Sender: TObject);
+begin
+  with Forganizacao.querykits do
+    begin
+        close;
+        sql.clear;
+        sql.Add('SELECT * FROM organizacao,contagem WHERE '+
+        'contagem.nomedapeca = organizacao.nomepeca AND organizacao.idkit = "'+cbbx.Text+'"');
+        open;
+    end;
+end;
+
+procedure TForganizar.FormActivate(Sender: TObject);
+begin
+    cbbx.Items.Clear;
+
+   with Forganizacao.queryaux do
+    begin
+      close;
+      sql.Clear;
+      sql.Add('SELECT * FROM kits');
+      open;
+
+      while not eof do
+        begin
+          cbbx.Items.Add(fieldbyname('id').asstring);
+          next;
+        end;
+
+    end;
+end;
+
+end.

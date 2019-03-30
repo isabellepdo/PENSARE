@@ -1,0 +1,20 @@
+program PENSARE;
+
+uses
+  Vcl.Forms,
+  Uinicial in 'Uinicial.pas' {Finicial},
+  Ucontagem in 'Ucontagem.pas' {Fcontagem},
+  Uorganizar in 'Uorganizar.pas' {Forganizar},
+  Uorganizacao in 'Uorganizacao.pas' {Form1};
+
+{$R *.res}
+
+begin
+  Application.Initialize;
+  Application.MainFormOnTaskbar := True;
+  Application.CreateForm(TFinicial, Finicial);
+  Application.CreateForm(TFcontagem, Fcontagem);
+  Application.CreateForm(TForganizar, Forganizar);
+  Application.CreateForm(TForm1, Form1);
+  Application.Run;
+end.

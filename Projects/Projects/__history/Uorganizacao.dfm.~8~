@@ -1,0 +1,126 @@
+object Forganizacao: TForganizacao
+  Left = 0
+  Top = 0
+  BorderIcons = [biSystemMenu]
+  BorderStyle = bsSingle
+  Caption = 'Forganizacao'
+  ClientHeight = 515
+  ClientWidth = 788
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  Position = poScreenCenter
+  PixelsPerInch = 96
+  TextHeight = 13
+  object GroupBox1: TGroupBox
+    Left = 0
+    Top = 0
+    Width = 788
+    Height = 515
+    Align = alClient
+    TabOrder = 0
+    ExplicitLeft = 184
+    ExplicitTop = 88
+    ExplicitWidth = 185
+    ExplicitHeight = 105
+    object GroupBox2: TGroupBox
+      Left = 16
+      Top = 24
+      Width = 185
+      Height = 241
+      Caption = 'KITS'
+      TabOrder = 0
+      object LabeledEdit1: TLabeledEdit
+        Left = 16
+        Top = 48
+        Width = 137
+        Height = 21
+        EditLabel.Width = 66
+        EditLabel.Height = 13
+        EditLabel.Caption = 'Numero do kit'
+        TabOrder = 0
+      end
+      object BitBtn1: TBitBtn
+        Left = 16
+        Top = 200
+        Width = 137
+        Height = 25
+        Caption = 'Cadastrar'
+        TabOrder = 1
+      end
+      object LabeledEdit2: TLabeledEdit
+        Left = 16
+        Top = 96
+        Width = 137
+        Height = 21
+        EditLabel.Width = 49
+        EditLabel.Height = 13
+        EditLabel.Caption = 'Tipo de kit'
+        TabOrder = 2
+      end
+      object LabeledEdit3: TLabeledEdit
+        Left = 16
+        Top = 144
+        Width = 137
+        Height = 21
+        EditLabel.Width = 105
+        EditLabel.Height = 13
+        EditLabel.Caption = 'Tombo do controlador'
+        TabOrder = 3
+      end
+    end
+  end
+  object DBGERAL: TZConnection
+    ControlsCodePage = cCP_UTF16
+    Catalog = ''
+    Properties.Strings = (
+      'timeout=28800'
+      'AutoEncodeStrings=ON'
+      'controls_cp=CP_UTF16')
+    HostName = ''
+    Port = 3306
+    Database = ''
+    User = 'root'
+    Password = ''
+    Protocol = 'mysql-5'
+    Left = 712
+    Top = 24
+  end
+  object querycontagem: TZQuery
+    Connection = DBGERAL
+    Params = <>
+    Left = 712
+    Top = 80
+  end
+  object dscontagem: TDataSource
+    DataSet = querycontagem
+    Left = 712
+    Top = 136
+  end
+  object queryaux: TZQuery
+    Connection = DBGERAL
+    Params = <>
+    Left = 712
+    Top = 200
+  end
+  object dsaux: TDataSource
+    DataSet = queryaux
+    Left = 712
+    Top = 256
+  end
+  object querykits: TZQuery
+    Connection = DBGERAL
+    Params = <>
+    Left = 712
+    Top = 312
+  end
+  object dskits: TDataSource
+    DataSet = querykits
+    Left = 712
+    Top = 368
+  end
+end

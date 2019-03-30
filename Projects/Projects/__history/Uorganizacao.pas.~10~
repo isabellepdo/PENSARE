@@ -1,0 +1,57 @@
+unit Uorganizacao;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Buttons, Vcl.ExtCtrls,
+  ZAbstractConnection, ZConnection, Data.DB, ZAbstractRODataset,
+  ZAbstractDataset, ZDataset;
+
+type
+  TForganizacao = class(TForm)
+    GroupBox1: TGroupBox;
+    GroupBox2: TGroupBox;
+    idkit: TLabeledEdit;
+    BitBtn1: TBitBtn;
+    tipokit: TLabeledEdit;
+    tombo: TLabeledEdit;
+    DBGERAL: TZConnection;
+    querycontagem: TZQuery;
+    dscontagem: TDataSource;
+    queryaux: TZQuery;
+    dsaux: TDataSource;
+    querykits: TZQuery;
+    dskits: TDataSource;
+    procedure BitBtn1Click(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  Forganizacao: TForganizacao;
+
+implementation
+
+{$R *.dfm}
+
+procedure TForganizacao.BitBtn1Click(Sender: TObject);
+begin
+  with queryaux do
+    begin
+      close;
+      sql.Clear;
+      sql.Add('INSERT INTO kits (numero, tipo, tombo) '+
+      'WHERE ("'+idkit.text+'", "'+tipokit.text+'", "'+tombo.Text+'")');
+      execsql;
+    end;
+
+    showmessage('Kit cadastrado');
+    idkit.Text := '';
+    tipokit.Text := '';
+    tombo.Text := '';
+end;
+
+end.

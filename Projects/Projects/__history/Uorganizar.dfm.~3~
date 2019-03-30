@@ -1,0 +1,31 @@
+object Forganizar: TForganizar
+  Left = 0
+  Top = 0
+  BorderIcons = [biSystemMenu]
+  BorderStyle = bsSingle
+  Caption = 'Forganizar'
+  ClientHeight = 525
+  ClientWidth = 799
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  Position = poScreenCenter
+  PixelsPerInch = 96
+  TextHeight = 13
+  object GroupBox1: TGroupBox
+    Left = 0
+    Top = 0
+    Width = 799
+    Height = 525
+    Align = alClient
+    TabOrder = 0
+    ExplicitLeft = 496
+    ExplicitTop = 224
+    ExplicitWidth = 185
+    ExplicitHeight = 105
+  end
+end

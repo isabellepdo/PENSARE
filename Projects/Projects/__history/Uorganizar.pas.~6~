@@ -1,0 +1,31 @@
+unit Uorganizar;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Data.DB, Vcl.Grids,
+  Vcl.DBGrids, Vcl.Buttons;
+
+type
+  TForganizar = class(TForm)
+    GroupBox1: TGroupBox;
+    ComboBox1: TComboBox;
+    BitBtn1: TBitBtn;
+    DBGrid1: TDBGrid;
+    BitBtn2: TBitBtn;
+    Label1: TLabel;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  Forganizar: TForganizar;
+
+implementation
+
+{$R *.dfm}
+
+end.
